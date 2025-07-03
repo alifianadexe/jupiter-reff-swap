@@ -1,0 +1,42 @@
+{
+    "name": "fee-swap-example",
+    "version": "1.0.0",
+    "description": "Jupiter API swap with fee collection example",
+    "main": "dist/index.js",
+    "scripts": {
+        "build": "tsc",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "examples": "ts-node src/examples.ts",
+        "wallet-info": "ts-node src/wallet-info.ts",
+        "quote-only": "ts-node -e \"import('./src/examples').then(m => m.example3())\"",
+        "simple-test": "ts-node src/simple-test.ts",
+        "swap-fixed": "ts-node src/swap-fixed.ts",
+        "swap-no-fees": "ts-node src/swap-no-fees.ts",
+        "create-referral-account": "ts-node src/create-referral-account.ts",
+        "clean": "rmdir /s /q dist",
+        "lint": "tsc --noEmit"
+    },
+    "keywords": [
+        "solana",
+        "jupiter",
+        "swap",
+        "fees"
+    ],
+    "author": "",
+    "license": "MIT",
+    "dependencies": {
+        "@jup-ag/referral-sdk": "^0.2.0",
+        "@solana/spl-token": "^0.4.8",
+        "@solana/web3.js": "^1.95.2",
+        "bs58": "^5.0.0",
+        "node-fetch": "^2.7.0"
+    },
+    "devDependencies": {
+        "@types/bs58": "^4.0.4",
+        "@types/node": "^20.11.17",
+        "@types/node-fetch": "^2.6.11",
+        "ts-node": "^10.9.2",
+        "typescript": "^5.3.3"
+    }
+}
