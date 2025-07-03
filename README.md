@@ -21,7 +21,17 @@ A comprehensive TypeScript program that demonstrates how to swap tokens and coll
 npm install
 ```
 
-3. Build the project:
+3. **Set up environment variables:**
+
+```bash
+# Copy the example file
+cp .env.example .env
+
+# Edit .env and add your private key
+# PRIVATE_KEY=your_base58_encoded_private_key_here
+```
+
+4. Build the project:
 
 ```bash
 npm run build
@@ -29,16 +39,26 @@ npm run build
 
 ## 🔧 Configuration
 
-The project uses a configuration file (`src/config.ts`) with the following settings:
+The project uses environment variables for configuration. Create a `.env` file from the provided template:
 
-- **RPC_URL**: Solana RPC endpoint
-- **PRIVATE_KEY**: Your wallet's private key (base58 encoded)
-- **FEE_ACCOUNT**: Token account to receive platform fees
+```bash
+cp .env.example .env
+```
+
+Then configure the following variables in your `.env` file:
+
+- **PRIVATE_KEY**: Your wallet's private key (base58 encoded) - **REQUIRED**
+- **RPC_URL**: Solana RPC endpoint (default: mainnet-beta)
+- **REFFERAL_ACCOUNT**: Referral account address for fee collection
+- **FEE_ACCOUNT**: Fee account address for platform fees
 - **PLATFORM_FEE_BPS**: Fee in basis points (e.g., 20 = 0.2%)
-- **INPUT_TOKEN**: Source token mint address
-- **OUTPUT_TOKEN**: Destination token mint address
-- **SWAP_AMOUNT**: Amount to swap (in smallest units)
-- **SLIPPAGE_BPS**: Allowed slippage in basis points
+- **INPUT_TOKEN**: Source token mint address (default: SOL)
+- **OUTPUT_TOKEN**: Destination token mint address (default: USDC)
+- **SWAP_AMOUNT**: Amount to swap in smallest units (default: 10M lamports = 0.01 SOL)
+- **SLIPPAGE_BPS**: Allowed slippage in basis points (default: 50 = 0.5%)
+- **PRIORITY_FEE_LAMPORTS**: Priority fee in lamports or "auto"
+
+⚠️ **IMPORTANT**: Never commit your `.env` file to version control. It contains sensitive information.
 
 ## 🎯 Usage
 
@@ -128,9 +148,35 @@ Example: 20 bps = 0.2% fee
 ## 🔒 Security Notes
 
 - **Private Key**: Never share your private key or commit it to version control
+- **Environment Variables**: Store sensitive data in `.env` file (automatically ignored by Git)
 - **Mainnet**: The example uses Solana mainnet - real tokens will be used
-- **Testing**: Use small amounts for testing
+- **Testing**: Use small amounts for testing with a separate wallet
 - **Validation**: All inputs are validated before execution
+
+### Getting Your Private Key
+
+To get your private key in base58 format:
+
+1. **Using Solana CLI:**
+
+   ```bash
+   solana config get keypair
+   # Then convert the JSON array to base58
+   ```
+
+2. **Using Phantom/Solflare wallet:**
+   Export your private key from your wallet (usually in base58 format)
+
+3. **Programmatically:**
+
+   ```javascript
+   import { Keypair } from "@solana/web3.js";
+   import bs58 from "bs58";
+
+   const keypair = Keypair.generate();
+   const privateKey = bs58.encode(keypair.secretKey);
+   console.log("Private Key:", privateKey);
+   ```
 
 ## 🛠️ Project Structure
 

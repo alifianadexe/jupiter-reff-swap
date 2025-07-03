@@ -14,6 +14,7 @@
         "swap-fixed": "ts-node src/swap-fixed.ts",
         "swap-no-fees": "ts-node src/swap-no-fees.ts",
         "create-referral-account": "ts-node src/create-referral-account.ts",
+        "test-env": "ts-node src/test-env.ts",
         "clean": "rmdir /s /q dist",
         "lint": "tsc --noEmit"
     },
@@ -30,10 +31,12 @@
         "@solana/spl-token": "^0.4.8",
         "@solana/web3.js": "^1.95.2",
         "bs58": "^5.0.0",
+        "dotenv": "^17.0.1",
         "node-fetch": "^2.7.0"
     },
     "devDependencies": {
         "@types/bs58": "^4.0.4",
+        "@types/dotenv": "^8.2.3",
         "@types/node": "^20.11.17",
         "@types/node-fetch": "^2.6.11",
         "ts-node": "^10.9.2",
