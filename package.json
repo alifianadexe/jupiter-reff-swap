@@ -5,8 +5,6 @@
     "main": "dist/index.js",
     "scripts": {
         "build": "tsc",
-        "start": "node dist/index.js",
-        "dev": "ts-node src/index.ts",
         "examples": "ts-node src/examples.ts",
         "wallet-info": "ts-node src/wallet-info.ts",
         "quote-only": "ts-node -e \"import('./src/examples').then(m => m.example3())\"",
